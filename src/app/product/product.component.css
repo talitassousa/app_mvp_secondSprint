@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@500&family=Urbanist:ital,wght@1,300&display=swap');
+
+.picture{
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+}
+
+.title{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0px 30px 0px;
+    color: aliceblue;
+    font-family: 'Urbanist', sans-serif;
+}
+
+.column {
+    color: aliceblue;
+    font-family: 'Urbanist', sans-serif;
+    font-size: 25px;
+    background-color: rgb(245, 224, 193);
+    
+}
+
+.inputs {
+    position: relative;
+    display: flex;
+    justify-content:center;
+    padding-bottom: 20px;
+    column-gap: 1rem;
+
+}
+
+
+
