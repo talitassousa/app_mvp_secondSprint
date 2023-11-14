@@ -6,3 +6,8 @@
     padding: 0;
     box-sizing: border-box;
   }
+
+  /* Procuts Table */
+  .p-datatable .p-datatable-tbody > tr > td { 
+    padding: 15px 0px 7px 20px !important;
+  }

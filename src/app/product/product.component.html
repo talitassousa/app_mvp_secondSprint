@@ -21,7 +21,7 @@
       type="text"
       pInputText
       id="newContainer"
-      placeholder="Recipiente:"
+      placeholder="Recipiente: L ou ML"
       [(ngModel)]="product.recipiente"
     />
     <input
@@ -40,9 +40,9 @@
     />
     <button pButton (click)="post(product)">Adicionar</button>
   </div>
-  <div>
-    <p-table [value]="products" class="column">
-      <ng-template pTemplate="header">
+  <div  class="table">
+    <p-table [value]="products">
+      <ng-template  pTemplate="header">
         <tr>
           <th>Nome</th>
           <th>Recipiente</th>
@@ -52,7 +52,7 @@
           <th><i class="pi pi-pencil"></i></th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body">
+      <ng-template pTemplate="body" let-product>
         <tr>
           <td>{{ product.nome }}</td>
           <td>{{ product.recipiente }}</td>
@@ -66,7 +66,9 @@
               icon="pi pi-times"
               class="p-button-danger mr-2"
             ></button>
-            <button
+          </td>
+          <td>
+            <button class="button"
               pButton
               type="button"
               [routerLink]="['/product', product.id]"

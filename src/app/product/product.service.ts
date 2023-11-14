@@ -9,6 +9,7 @@ import { Product } from '../models/product';
 export class ProductService {
 
   url!: string;
+ 
 
   constructor(private http: HttpClient) {
     this.url = 'http://127.0.0.1:5000';
@@ -19,7 +20,7 @@ export class ProductService {
   }
 
   putProduct(id: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.url}/${id}/product`, product);
+    return this.http.put<Product>(`${this.url}/product/${id}`, product);
   }
 
   getAll(): Observable<Product[]> {

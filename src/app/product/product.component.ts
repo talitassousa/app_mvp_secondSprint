@@ -55,7 +55,7 @@ export class ProductComponent implements OnInit {
           detail: 'Produto adicionado com sucesso!',
         });
         setTimeout(() => {
-          return window.location.reload();
+          window.location.reload();
         }, 1000);
       },
       error: (err) => {
@@ -88,7 +88,7 @@ export class ProductComponent implements OnInit {
   getAll() {
     this.service.getAll().subscribe({
       next: (response) => {
-        this.products = response
+        this.products = response;
         console.log(this.products);
       },
       error: (err) => {
@@ -112,7 +112,7 @@ export class ProductComponent implements OnInit {
   deleteProduct(id: number) {
     this.service.deleteProduct(id).subscribe({
       next: (response) => {
-        this.product = { ...response };
+        this.product = response 
         this.MessageService.add({
           key: 'bc',
           severity: 'error',
