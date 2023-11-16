@@ -15,6 +15,8 @@ export class ProductComponent implements OnInit {
 
   product = new Product();
 
+  productPut: any = {};
+
   message!: string;
   action!: string;
 
@@ -38,7 +40,9 @@ export class ProductComponent implements OnInit {
   postPut(product: Product) {
     if (this.route.snapshot.paramMap.get('id')) {
       let id = Number(this.route.snapshot.paramMap.get('id'));
-      this.put(id, product);
+      this.product = { ...product };
+      // this.put(id, product);
+      // this.pruductPut = {}
     } else {
       this.post(product);
     }
@@ -112,7 +116,7 @@ export class ProductComponent implements OnInit {
   deleteProduct(id: number) {
     this.service.deleteProduct(id).subscribe({
       next: (response) => {
-        this.product = response 
+        this.product = response;
         this.MessageService.add({
           key: 'bc',
           severity: 'error',

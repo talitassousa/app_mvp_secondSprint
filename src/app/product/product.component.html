@@ -38,7 +38,7 @@
       placeholder="Valor:"
       [(ngModel)]="product.valor"
     />
-    <button pButton (click)="post(product)">Adicionar</button>
+    <button pButton (click)="postPut(product)">Salvar</button>
   </div>
   <div  class="table">
     <p-table [value]="products">
@@ -71,7 +71,7 @@
             <button class="button"
               pButton
               type="button"
-              [routerLink]="['/product', product.id]"
+              (click)="postPut(product)"
               icon="pi pi-user-edit"
             ></button>
           </td>
