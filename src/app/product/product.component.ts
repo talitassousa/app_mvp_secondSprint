@@ -41,8 +41,6 @@ export class ProductComponent implements OnInit {
     if (this.route.snapshot.paramMap.get('id')) {
       let id = Number(this.route.snapshot.paramMap.get('id'));
       this.product = { ...product };
-      // this.put(id, product);
-      // this.pruductPut = {}
     } else {
       this.post(product);
     }
@@ -64,6 +62,12 @@ export class ProductComponent implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.MessageService.add({
+          key: 'bc',
+          severity: 'warn',
+          summary: 'Ops!',
+          detail: 'Produto de mesmo nome e recipiente já adicionado a base!'
+        });
       },
     });
   }
@@ -74,7 +78,7 @@ export class ProductComponent implements OnInit {
         console.log(response);
         this.MessageService.add({
           key: 'bc',
-          severity: 'warn',
+          severity: 'info',
           summary: 'Editado',
           detail: 'Produto editado com sucesso!',
         });

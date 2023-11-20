@@ -20,7 +20,7 @@ export class ProductService {
   }
 
   putProduct(id: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.url}/product/${id}`, product);
+    return this.http.put<Product>(`${this.url}/product/?id=${id}`, product);
   }
 
   getAll(): Observable<Product[]> {
@@ -31,6 +31,6 @@ export class ProductService {
   }
 
   deleteProduct(id: number): Observable<Product> {
-    return this.http.delete<Product>(`${this.url}/product/${id}`);
+    return this.http.delete<Product>(`${this.url}/product/?id=${id}`);
   }
 }
