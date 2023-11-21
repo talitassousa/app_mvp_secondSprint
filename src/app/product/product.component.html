@@ -38,7 +38,8 @@
       placeholder="Valor:"
       [(ngModel)]="product.valor"
     />
-    <button pButton (click)="postPut(product)">Salvar</button>
+    
+    <button pButton (click)="postPut()">Salvar</button>
   </div>
   <div  class="table">
     <p-table [value]="products">
@@ -55,7 +56,7 @@
       <ng-template pTemplate="body" let-product>
         <tr>
           <td>{{ product.nome }}</td>
-          <td>{{ product.recipiente }}</td>
+          <td>{{ product.recipiente + " L"}}</td>
           <td>{{ product.quantidade }}</td>
           <td>{{ product.valor }}</td>
           <td>
@@ -71,7 +72,7 @@
             <button class="button"
               pButton
               type="button"
-              (click)="put(product.id, product.recipiente)"
+              (click)="editProduct(product.id, product)"
               icon="pi pi-user-edit"
             ></button>
           </td>

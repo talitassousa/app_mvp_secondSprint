@@ -19,7 +19,7 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     InputTextModule,
     ButtonModule,
-    FormsModule
+    FormsModule,
   ],
 })
 export class ProductModule {}

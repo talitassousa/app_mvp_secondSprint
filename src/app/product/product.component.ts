@@ -15,10 +15,13 @@ export class ProductComponent implements OnInit {
 
   product = new Product();
 
-  productPut: any = {};
+  editingMode = false;
+  editingProduct: Product = new Product();
 
   message!: string;
   action!: string;
+
+  form: any;
 
   constructor(
     private service: ProductService,
@@ -37,12 +40,33 @@ export class ProductComponent implements OnInit {
     this.getAll();
   }
 
-  postPut(product: Product) {
-    if (this.route.snapshot.paramMap.get('id')) {
-      let id = Number(this.route.snapshot.paramMap.get('id'));
-      this.product = { ...product };
+  // Seu componente Angular
+  editProduct(id: number, product: Product) {
+    this.editingMode = true;
+
+    // Lógica para obter as informações do produto (pode ser uma chamada HTTP)
+    this.productService.getId(id).subscribe({
+      next: (response) => {
+        this.editingProduct = response;
+
+        this.product.id = this.editingProduct.id;
+        this.product.nome = this.editingProduct.nome;
+        this.product.recipiente = this.editingProduct.recipiente;
+        this.product.quantidade = this.editingProduct.quantidade;
+        this.product.valor = this.editingProduct.valor;
+      },
+      error: (err) => {
+        console.log(err);
+        alert('Erro ao tentar obter informações do produto para edição!');
+      },
+    });
+  }
+
+  postPut() {
+    if (this.editingMode) {
+      this.put(this.product.id, this.product);
     } else {
-      this.post(product);
+      this.post(this.product);
     }
   }
 
@@ -66,7 +90,7 @@ export class ProductComponent implements OnInit {
           key: 'bc',
           severity: 'warn',
           summary: 'Ops!',
-          detail: 'Produto de mesmo nome e recipiente já adicionado a base!'
+          detail: 'Produto de mesmo nome e recipiente já adicionado a base!',
         });
       },
     });
@@ -82,9 +106,12 @@ export class ProductComponent implements OnInit {
           summary: 'Editado',
           detail: 'Produto editado com sucesso!',
         });
-        setTimeout(() => {
-          return window.location.reload();
-        }, 1000);
+        // Atualize os dados na tabela ou lista
+        const index = this.products.findIndex((product) => product.id === id);
+        
+        if (index !== -1) {
+          this.products[index] = product;
+        }
       },
       error: (err) => {
         console.log(err);
