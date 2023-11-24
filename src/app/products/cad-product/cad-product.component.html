@@ -1,0 +1,52 @@
+<p-toast
+  key="bc"
+  position="top-right"
+  [breakpoints]="{ '768px': { width: '100%', right: '0', left: '0' } }"
+></p-toast>
+
+<div>
+  <img class="picture" src="./../../assets/images/deposito.jpg" alt="" />
+  <div class="title">
+    <h1>Cadastrar novo produto</h1>
+  </div>
+  <div class="btt-back">
+    <button pButton routerLink="/products" icon="pi pi-backward"></button>
+  </div>
+  <div class="container">
+    <div class="inputs">
+      <input
+        style="padding: 10px 60px 10px 60px"
+        type="text"
+        pInputText
+        id="newInput"
+        placeholder="Adicionar novo item:"
+        [(ngModel)]="product.nome"
+      />
+      <input
+        style="padding: 10px 60px 10px 60px"
+        type="text"
+        pInputText
+        id="newContainer"
+        placeholder="Recipiente: L ou ML"
+        [(ngModel)]="product.recipiente"
+      />
+      <input
+        style="padding: 10px 60px 10px 60px"
+        type="text"
+        pInputText
+        id="newQuantity"
+        placeholder="Quantidade:"
+        [(ngModel)]="product.quantidade"
+      />
+      <input
+        style="padding: 10px 60px 10px 60px"
+        type="text"
+        pInputText
+        id="newPrice"
+        placeholder="Valor:"
+        [(ngModel)]="product.valor"
+      />
+      <button pButton (click)="postPut()" routerLink="/products">Salvar</button>
+    </div>
+  </div>
+</div>

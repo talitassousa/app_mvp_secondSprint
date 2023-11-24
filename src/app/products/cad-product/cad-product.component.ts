@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Product } from 'src/app/models/product';
+import { ProductService } from '../product/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Product } from '../models/product';
-import { ProductService } from './product.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './product.component.html',
-  styleUrls: ['./product.component.css'],
+  selector: 'app-cad-product',
+  templateUrl: './cad-product.component.html',
+  styleUrls: ['./cad-product.component.css'],
   providers: [MessageService],
 })
-export class ProductComponent implements OnInit {
+export class CadProductComponent {
+
   products: Product[] = [];
 
   product = new Product();
@@ -163,3 +164,4 @@ export class ProductComponent implements OnInit {
     });
   }
 }
+

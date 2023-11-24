@@ -10,40 +10,24 @@
     <h1>Depósito de Bebidas</h1>
   </div>
   <div class="inputs">
-    <input
-      type="text"
-      pInputText
-      id="newInput"
-      placeholder="Adicionar novo item:"
-      [(ngModel)]="product.nome"
-    />
-    <input
-      type="text"
-      pInputText
-      id="newContainer"
-      placeholder="Recipiente: L ou ML"
-      [(ngModel)]="product.recipiente"
-    />
-    <input
-      type="text"
-      pInputText
-      id="newQuantity"
-      placeholder="Quantidade:"
-      [(ngModel)]="product.quantidade"
-    />
-    <input
-      type="text"
-      pInputText
-      id="newPrice"
-      placeholder="Valor:"
-      [(ngModel)]="product.valor"
-    />
-    
-    <button pButton (click)="postPut()">Salvar</button>
+    <div  >
+      <input
+        style="width: 500px"
+        type="text"
+        #searchInput
+        (input)="dt1.filterGlobal(searchInput.value, 'contains')"
+        pInputText
+        placeholder="Digite um produto"
+      />
+      <button pButton type="button" icon="pi pi-search" ></button>
+    </div>
+    <div >
+      <button pButton type="button" routerLink="/products/cadastrar" icon="pi pi-plus" label="Cadastrar"></button>
+    </div>
   </div>
-  <div  class="table">
-    <p-table [value]="products">
-      <ng-template  pTemplate="header">
+  <div class="table">
+    <p-table #dt1 [value]="products" [globalFilterFields]="['nome']">
+      <ng-template pTemplate="header">
         <tr>
           <th>Nome</th>
           <th>Recipiente</th>
@@ -56,9 +40,9 @@
       <ng-template pTemplate="body" let-product>
         <tr>
           <td>{{ product.nome }}</td>
-          <td>{{ product.recipiente + " L"}}</td>
+          <td>{{ product.recipiente + " L" }}</td>
           <td>{{ product.quantidade }}</td>
-          <td>{{ product.valor }}</td>
+          <td>{{ "R$ " + product.valor }}</td>
           <td>
             <button
               pButton
@@ -69,9 +53,11 @@
             ></button>
           </td>
           <td>
-            <button class="button"
+            <button
+              class="button"
               pButton
               type="button"
+              [routerLink]="['/products/cadastrar']"
               (click)="editProduct(product.id, product)"
               icon="pi pi-user-edit"
             ></button>

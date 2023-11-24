@@ -19,10 +19,9 @@
 .inputs {
     position: relative;
     display: flex;
-    justify-content:center;
+    justify-content: space-around;  
     padding-bottom: 20px;
     column-gap: 1rem;
-
 }
 
 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ProductModule } from './product/product.module';
+import { ProductModule } from './products/product/product.module';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
