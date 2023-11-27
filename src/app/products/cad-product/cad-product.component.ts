@@ -11,7 +11,6 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class CadProductComponent {
-
   products: Product[] = [];
 
   product = new Product();
@@ -38,7 +37,6 @@ export class CadProductComponent {
     if (id) {
       this.getId(id);
     }
-    this.getAll();
   }
 
   // Seu componente Angular
@@ -63,11 +61,12 @@ export class CadProductComponent {
     });
   }
 
-  postPut() {
-    if (this.editingMode) {
-      this.put(this.product.id, this.product);
+  postPut(product: Product) {
+    if (this.route.snapshot.paramMap.get('id')) {
+      let id = Number(this.route.snapshot.paramMap.get('id'));
+      this.put(id, product);
     } else {
-      this.post(this.product);
+      this.post(product);
     }
   }
 
@@ -82,8 +81,8 @@ export class CadProductComponent {
           detail: 'Produto adicionado com sucesso!',
         });
         setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+          this.router.navigate(['/products']);
+        }, 2000);
       },
       error: (err) => {
         console.log(err);
@@ -93,6 +92,9 @@ export class CadProductComponent {
           summary: 'Ops!',
           detail: 'Produto de mesmo nome e recipiente já adicionado a base!',
         });
+        setTimeout(() => {
+          this.router.navigate(['/products']);
+        }, 2000);
       },
     });
   }
@@ -107,28 +109,13 @@ export class CadProductComponent {
           summary: 'Editado',
           detail: 'Produto editado com sucesso!',
         });
-        // Atualize os dados na tabela ou lista
-        const index = this.products.findIndex((product) => product.id === id);
-        
-        if (index !== -1) {
-          this.products[index] = product;
-        }
+        setTimeout(() => {
+          this.router.navigate(['/products']);
+        }, 2000);
       },
       error: (err) => {
         console.log(err);
         alert('Erro ao tentar editar!');
-      },
-    });
-  }
-
-  getAll() {
-    this.service.getAll().subscribe({
-      next: (response) => {
-        this.products = response;
-        console.log(this.products);
-      },
-      error: (err) => {
-        console.log(err);
       },
     });
   }
@@ -144,24 +131,4 @@ export class CadProductComponent {
       },
     });
   }
-
-  deleteProduct(id: number) {
-    this.service.deleteProduct(id).subscribe({
-      next: (response) => {
-        this.product = response;
-        this.MessageService.add({
-          key: 'bc',
-          severity: 'error',
-          summary: 'Produto excluído',
-        });
-        setTimeout(() => {
-          return window.location.reload();
-        }, 1000);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
 }
-

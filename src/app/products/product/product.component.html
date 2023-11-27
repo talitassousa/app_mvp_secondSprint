@@ -57,8 +57,7 @@
               class="button"
               pButton
               type="button"
-              [routerLink]="['/products/cadastrar']"
-              (click)="editProduct(product.id, product)"
+              [routerLink]="['/products', product.id]"
               icon="pi pi-user-edit"
             ></button>
           </td>

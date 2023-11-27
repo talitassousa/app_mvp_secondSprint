@@ -46,7 +46,7 @@
         placeholder="Valor:"
         [(ngModel)]="product.valor"
       />
-      <button pButton (click)="postPut()" routerLink="/products">Salvar</button>
+      <button pButton type="button" (click)="postPut(product)" label="Salvar"></button>
     </div>
   </div>
 </div>
