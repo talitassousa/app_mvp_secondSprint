@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/product';
 
@@ -16,7 +16,15 @@ export class ProductService {
   }
 
   postProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(`${this.url}/product`, product);
+    const formData: FormData = new FormData();
+    formData.append('nome', product.nome);
+    formData.append('quantidade', product.quantidade.toString());
+    formData.append('recipiente', product.recipiente.toString());
+    formData.append('valor', product.valor.toString());
+
+    let headers = new HttpHeaders().set('accept', '*/*');
+
+    return this.http.post<Product>(`${this.url}/product`, formData, { headers: headers });
   }
 
   putProduct(id: number, product: Product): Observable<Product> {

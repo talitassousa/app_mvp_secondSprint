@@ -71,6 +71,7 @@ export class CadProductComponent {
   }
 
   post(product: Product) {
+    
     this.productService.postProduct(product).subscribe({
       next: (response) => {
         console.log(response);
