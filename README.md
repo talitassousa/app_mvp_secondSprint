@@ -18,3 +18,5 @@ O principal objetivo ao criar esse projeto, é que ele realmente pudesse ser usa
 - Deletar produto: Permite a deleção de um produto já cadastrado na base. 
 - Mensagens de Alerta: Exibe mensagens de alerta para o usuário com base nas ações realizadas no sistema.
 
+## CAPTURA DA TELA 🖼️
+![Captura de tela 2023-12-01 160253](https://github.com/talitassousa/app_mvp_firstSprint/assets/86735363/f6dfd45f-17a1-4040-a87c-e29303b780a2)
