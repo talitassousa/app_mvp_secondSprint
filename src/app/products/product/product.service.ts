@@ -7,9 +7,7 @@ import { Product } from '../../models/product';
   providedIn: 'root',
 })
 export class ProductService {
-
   url!: string;
- 
 
   constructor(private http: HttpClient) {
     this.url = 'http://127.0.0.1:5000';
@@ -24,11 +22,19 @@ export class ProductService {
 
     let headers = new HttpHeaders().set('accept', '*/*');
 
-    return this.http.post<Product>(`${this.url}/product`, formData, { headers: headers });
+    return this.http.post<Product>(`${this.url}/product`, formData, {
+      headers: headers,
+    });
   }
 
   putProduct(id: number, product: Product): Observable<Product> {
-    return this.http.put<Product>(`${this.url}/product/?id=${id}`, product);
+    const formData = new FormData();
+    formData.append('nome', product.nome);
+    formData.append('quantidade', product.quantidade.toString());
+    formData.append('recipiente', product.recipiente.toString());
+    formData.append('valor', product.valor.toString());
+
+    return this.http.put<Product>(`${this.url}/product/?id=${id}`, formData);
   }
 
   getAll(): Observable<Product[]> {
