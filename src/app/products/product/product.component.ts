@@ -23,6 +23,7 @@ export class ProductComponent implements OnInit {
 
   form: any;
 
+  // Inicializa o componente, injetando os serviços necessários.
   constructor(
     private service: ProductService,
     private router: Router,
@@ -31,10 +32,12 @@ export class ProductComponent implements OnInit {
     private productService: ProductService
   ) {}
 
+  // Método chamado durante a inicialização do componente.
   ngOnInit(): void {
    this.getAll()
   }
 
+  // Obtém todos os produtos do serviço e atualiza a lista de produtos.
   getAll() {
     this.service.getAll().subscribe({
       next: (response) => {
@@ -47,6 +50,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  // Deleta um produto com o ID fornecido.
   deleteProduct(id: number) {
     this.service.deleteProduct(id).subscribe({
       next: (response) => {

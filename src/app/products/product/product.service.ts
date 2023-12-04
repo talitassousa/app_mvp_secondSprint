@@ -9,10 +9,12 @@ import { Product } from '../../models/product';
 export class ProductService {
   url!: string;
 
+  // Inicializa o serviço com o HttpClient e define a URL do backend.
   constructor(private http: HttpClient) {
     this.url = 'http://127.0.0.1:5000';
   }
 
+  // Envia uma solicitação HTTP POST para adicionar um novo produto e transforma o produto em um FORMDATA.
   postProduct(product: Product): Observable<Product> {
     const formData: FormData = new FormData();
     formData.append('nome', product.nome);
@@ -27,6 +29,7 @@ export class ProductService {
     });
   }
 
+  // Envia uma solicitação HTTP PUT para atualizar um produto existente e transforma o produto em um FORMDATA.
   putProduct(id: number, product: Product): Observable<Product> {
     const formData = new FormData();
     formData.append('nome', product.nome);
@@ -37,13 +40,17 @@ export class ProductService {
     return this.http.put<Product>(`${this.url}/product/?id=${id}`, formData);
   }
 
+  // Obtém todos os produtos do backend.
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.url}/products`);
   }
+
+  // Obtém um produto específico com o ID fornecido do backend.
   getId(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.url}/product/?id=${id}`);
   }
 
+  // Exclui um produto específico com o ID fornecido do backend.
   deleteProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(`${this.url}/product/?id=${id}`);
   }

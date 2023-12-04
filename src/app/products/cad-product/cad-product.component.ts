@@ -31,15 +31,17 @@ export class CadProductComponent {
     private productService: ProductService
   ) {}
 
+  // Método chamado durante a inicialização do componente.
   ngOnInit(): void {
+    // Obtém o parâmetro 'id' da rota para verificar se o componente está em modo de edição.
     const id: any = this.route.snapshot.paramMap.get('id');
 
     if (id) {
-      this.getId(id);
+      this.getId(id); // Se 'id' existe, o componente está em modo de edição.
     }
   }
 
-  // Seu componente Angular
+  // Entra no modo de edição e obtém as informações do produto para edição.
   editProduct(id: number, product: Product) {
     this.editingMode = true;
 
@@ -48,6 +50,7 @@ export class CadProductComponent {
       next: (response) => {
         this.editingProduct = response;
 
+        // Preenche o objeto 'product' com as informações do produto em edição.
         this.product.id = this.editingProduct.id;
         this.product.nome = this.editingProduct.nome;
         this.product.recipiente = this.editingProduct.recipiente;
@@ -61,6 +64,7 @@ export class CadProductComponent {
     });
   }
 
+  // Envia uma solicitação para adicionar ou editar um produto com base na presença do parâmetro 'id' na rota.
   postPut(product: Product) {
     if (this.route.snapshot.paramMap.get('id')) {
       let id = Number(this.route.snapshot.paramMap.get('id'));
@@ -70,8 +74,8 @@ export class CadProductComponent {
     }
   }
 
+  // Adiciona um novo produto.
   post(product: Product) {
-    
     this.productService.postProduct(product).subscribe({
       next: (response) => {
         console.log(response);
@@ -100,6 +104,7 @@ export class CadProductComponent {
     });
   }
 
+  // Edita um produto existente.
   put(id: number, product: Product) {
     this.productService.putProduct(id, product).subscribe({
       next: (response) => {
@@ -121,6 +126,7 @@ export class CadProductComponent {
     });
   }
 
+  // Obtém as informações de um produto com base no ID.
   getId(id: number) {
     this.productService.getId(id).subscribe({
       next: (response) => {
