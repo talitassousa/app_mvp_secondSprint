@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product';
 import { ProductService } from '../product/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Provider } from 'src/app/models/provider';
 
 @Component({
   selector: 'app-cad-product',
@@ -11,9 +12,12 @@ import { MessageService } from 'primeng/api';
   providers: [MessageService],
 })
 export class CadProductComponent {
+  selectedProvider: Provider | null = null;
   products: Product[] = [];
+  providers: Provider[] = [];
 
   product = new Product();
+  provider = new Provider();
 
   editingMode = false;
   editingProduct: Product = new Product();
@@ -39,6 +43,7 @@ export class CadProductComponent {
     if (id) {
       this.getId(id); // Se 'id' existe, o componente está em modo de edição.
     }
+    // this.getProviders()
   }
 
   // Entra no modo de edição e obtém as informações do produto para edição.
@@ -138,4 +143,10 @@ export class CadProductComponent {
       },
     });
   }
+
+  // getProviders() {
+  //   this.providers.get("").subscribe((provider: any) => {
+  //     this.provider = provider.map((provider: any) => provider.nome);
+  //   })
+  // }
 }

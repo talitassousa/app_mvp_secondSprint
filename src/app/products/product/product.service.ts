@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../../models/product';
+import { Provider } from '../../models/provider';
 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +30,7 @@ export class ProductService {
     });
   }
 
+
   // Envia uma solicitação HTTP PUT para atualizar um produto existente e transforma o produto em um FORMDATA.
   putProduct(id: number, product: Product): Observable<Product> {
     const formData = new FormData();
@@ -53,5 +55,9 @@ export class ProductService {
   // Exclui um produto específico com o ID fornecido do backend.
   deleteProduct(id: number): Observable<Product> {
     return this.http.delete<Product>(`${this.url}/product/?id=${id}`);
+  }
+
+  getProviders(): Observable<Provider[]> {
+    return this.http.get<Provider[]>(`${this.url}/providers`);
   }
 }

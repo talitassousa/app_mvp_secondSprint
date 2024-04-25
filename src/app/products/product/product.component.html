@@ -10,7 +10,7 @@
     <h1>Depósito de Bebidas</h1>
   </div>
   <div class="inputs">
-    <div  >
+    <div>
       <input
         style="width: 500px"
         type="text"
@@ -19,10 +19,24 @@
         pInputText
         placeholder="Digite um produto"
       />
-      <button pButton type="button" icon="pi pi-search" ></button>
+      <button pButton type="button" icon="pi pi-search"></button>
     </div>
-    <div >
-      <button pButton type="button" routerLink="/products/cadastrar" icon="pi pi-plus" label="Cadastrar"></button>
+    <div class="buttons">
+      <button
+        style="margin-right: 10px"
+        pButton
+        type="button"
+        routerLink="/products/cadastrar"
+        icon="pi pi-plus"
+        label="Cadastrar"
+      ></button>
+      <button
+        pButton
+        type="button"
+        routerLink="/provider"
+        icon="pi pi-plus"
+        label="Cadastrar Fornecedor"
+      ></button>
     </div>
   </div>
   <div class="table">
@@ -33,6 +47,7 @@
           <th>Recipiente</th>
           <th>Quantidade</th>
           <th>Valor</th>
+          <th>Fornecedor</th>
           <th><i class="pi pi-trash"></i></th>
           <th><i class="pi pi-pencil"></i></th>
         </tr>
@@ -43,6 +58,7 @@
           <td>{{ product.recipiente + " L" }}</td>
           <td>{{ product.quantidade }}</td>
           <td>{{ "R$ " + product.valor }}</td>
+          <td>{{ provider.nome }}</td>
           <td>
             <button
               pButton

@@ -46,7 +46,30 @@
         placeholder="Valor:"
         [(ngModel)]="product.valor"
       />
-      <button pButton type="button" (click)="postPut(product)" label="Salvar"></button>
+      <!-- <input
+        style="padding: 10px 60px 10px 60px"
+        type="text"
+        pInputText
+        id="newPrice"
+        placeholder="Fornecedor:"
+        [(ngModel)]="provider.nome"
+      /> -->
+      <p-autoComplete>
+        [(ngModel)]="selectedItem" [suggestion]="fornecedores"
+        (completeMethod)="search($event)"
+      </p-autoComplete>
+      <!-- <select pInputText [(ngModel)]="selectedProvider" name="selectedProvider">
+        <option *ngFor="let provider of providers" [ngValue]="provider">
+          {{ provider.nome }}
+        </option>
+      </select> -->
+
+      <button
+        pButton
+        type="button"
+        (click)="postPut(product)"
+        label="Salvar"
+      ></button>
     </div>
   </div>
 </div>

@@ -3,5 +3,6 @@ export class Product {
   nome = '';
   recipiente!: number;
   quantidade!: number;
-  valor!: number; 
+  valor!: number;
+  cep!: number; 
 }

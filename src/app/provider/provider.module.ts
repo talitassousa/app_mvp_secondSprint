@@ -1,29 +1,27 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { CadProductComponent } from '../cad-product/cad-product.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
-import { ProductRoutingModule } from './product-routing.module';
-import { ProductComponent } from './product.component';
-import { AutoCompleteModule } from 'primeng/autocomplete';
+import { ProviderRoutingModule } from './provider-routing.module';
+import { ProviderComponent } from './provider.component';
 
 @NgModule({
-  declarations: [ProductComponent, CadProductComponent],
+  declarations: [ProviderComponent],
   imports: [
     CommonModule,
-    ProductRoutingModule,
+    ProviderRoutingModule,
     ToastModule,
     TableModule,
     InputTextModule,
     ButtonModule,
     FormsModule,
     HttpClientModule,
-    AutoCompleteModule
+    ReactiveFormsModule,
   ],
 })
-export class ProductModule {}
+export class ProviderModule {}

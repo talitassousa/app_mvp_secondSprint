@@ -1,0 +1,88 @@
+<p-toast
+  key="bc"
+  position="top-right"
+  [breakpoints]="{ '768px': { width: '100%', right: '0', left: '0' } }"
+></p-toast>
+
+<div>
+  <img class="picture" src="./../../assets/images/deposito.jpg" alt="" />
+  <div class="title">
+    <h1>Cadastrar novo Fornecedor</h1>
+  </div>
+
+  <div class="btt-back">
+    <button pButton routerLink="/products" icon="pi pi-backward"></button>
+  </div>
+  <form [formGroup]="formulario">
+    <div class="container">
+      <div class="inputs">
+        <input
+          style="padding: 10px 60px 10px 60px"
+          type="text"
+          pInputText
+          placeholder="Nome Fornecedor"
+          formControlName="nome"
+        />
+        <input
+          style="padding: 10px 60px 10px 60px"
+          type="text"
+          pInputText
+          placeholder="CNPJ"
+          formControlName="cnpj"
+          [ngModel]="cnpjPipeTransform(form.controls['cnpj'].value || '')"
+          mask="00.000.000/0000-00"
+          maxlength="14"
+          required
+        />
+        <div class="p-error">
+          <span
+            *ngIf="
+              form.controls['cnpj'].hasError('required') &&
+              form.controls['cnpj'].touched
+            "
+          >
+            Campo Obrigatorio
+          </span>
+          <span
+            *ngIf="
+              form.controls['cnpj'].hasError('invalidCnpj') &&
+              form.controls['cnpj'].touched &&
+              !form.controls['cnpj'].hasError('required')
+            "
+          >
+            CNPJ Invalido
+          </span>
+        </div>
+        <input
+          style="padding: 10px 60px 10px 60px"
+          type="text"
+          pInputText
+          placeholder="CEP"
+          (blur)="onBlur($event)"
+          id="cep"
+          ngModel
+          formControlName="cep"
+        />
+        <input
+          style="padding: 10px 60px 10px 60px"
+          type="text"
+          pInputText
+          placeholder="Cidade"
+          id="cidade"
+          ngModel
+          formControlName="cidade"
+        />
+        <input
+          style="padding: 10px 60px 10px 60px"
+          type="text"
+          pInputText
+          placeholder="UF"
+          id="uf"
+          ngModel
+          formControlName="uf"
+        />
+        <button pButton type="button" label="Salvar" (click)="post()"></button>
+      </div>
+    </div>
+  </form>
+</div>

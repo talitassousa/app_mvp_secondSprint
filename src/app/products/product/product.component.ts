@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Product } from '../../models/product';
 import { ProductService } from './product.service';
+import { Provider } from 'src/app/models/provider';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,10 @@ import { ProductService } from './product.service';
 })
 export class ProductComponent implements OnInit {
   products: Product[] = [];
+  poviders: Provider[] = [];
 
   product = new Product();
+  provider = new Provider();
 
   editingMode = false;
   editingProduct: Product = new Product();
@@ -34,15 +37,15 @@ export class ProductComponent implements OnInit {
 
   // Método chamado durante a inicialização do componente.
   ngOnInit(): void {
-   this.getAll()
+    this.getAll();
+    
   }
 
   // Obtém todos os produtos do serviço e atualiza a lista de produtos.
   getAll() {
     this.service.getAll().subscribe({
       next: (response) => {
-        this.products = response
-        console.log(this.products);
+        this.products = response;
       },
       error: (err) => {
         console.log(err);
@@ -50,11 +53,13 @@ export class ProductComponent implements OnInit {
     });
   }
 
+ 
+
   // Deleta um produto com o ID fornecido.
   deleteProduct(id: number) {
     this.service.deleteProduct(id).subscribe({
       next: (response) => {
-        this.product = response
+        this.product = response;
         this.MessageService.add({
           key: 'bc',
           severity: 'error',
