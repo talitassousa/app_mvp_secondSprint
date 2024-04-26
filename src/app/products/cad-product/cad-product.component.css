@@ -42,3 +42,7 @@
   border-radius: 10px;
   row-gap: 10px;
 }
+
+.p-autocomplete{
+  background-color: red !important;
+}

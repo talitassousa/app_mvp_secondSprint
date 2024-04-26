@@ -4,5 +4,5 @@ export class Product {
   recipiente!: number;
   quantidade!: number;
   valor!: number;
-  cep!: number; 
+  fornecedor!: string; 
 }

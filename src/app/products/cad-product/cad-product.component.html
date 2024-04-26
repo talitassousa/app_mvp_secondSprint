@@ -15,7 +15,7 @@
   <div class="container">
     <div class="inputs">
       <input
-        style="padding: 10px 60px 10px 60px"
+        style="padding: 10px 60px 10px 60px; width: 80%"
         type="text"
         pInputText
         id="newInput"
@@ -23,7 +23,7 @@
         [(ngModel)]="product.nome"
       />
       <input
-        style="padding: 10px 60px 10px 60px"
+        style="padding: 10px 60px 10px 60px; width: 80%"
         type="text"
         pInputText
         id="newContainer"
@@ -31,7 +31,7 @@
         [(ngModel)]="product.recipiente"
       />
       <input
-        style="padding: 10px 60px 10px 60px"
+        style="padding: 10px 60px 10px 60px; width: 80%"
         type="text"
         pInputText
         id="newQuantity"
@@ -39,30 +39,27 @@
         [(ngModel)]="product.quantidade"
       />
       <input
-        style="padding: 10px 60px 10px 60px"
+        style="padding: 10px 60px 10px 60px; width: 80%"
         type="text"
         pInputText
         id="newPrice"
         placeholder="Valor:"
         [(ngModel)]="product.valor"
       />
-      <!-- <input
-        style="padding: 10px 60px 10px 60px"
-        type="text"
+
+      <select
+        #fornecedorSelect
+        (change)="handleFornecedor(fornecedorSelect.value)"
         pInputText
-        id="newPrice"
-        placeholder="Fornecedor:"
-        [(ngModel)]="provider.nome"
-      /> -->
-      <p-autoComplete>
-        [(ngModel)]="selectedItem" [suggestion]="fornecedores"
-        (completeMethod)="search($event)"
-      </p-autoComplete>
-      <!-- <select pInputText [(ngModel)]="selectedProvider" name="selectedProvider">
-        <option *ngFor="let provider of providers" [ngValue]="provider">
-          {{ provider.nome }}
+        style="padding: 10px 60px 10px 60px; width: 80%"
+      >
+        <option
+          *ngFor="let fornecedor of fornecedores; let i = index"
+          [value]="fornecedores[i]"
+        >
+          {{ fornecedores[i] }}
         </option>
-      </select> -->
+      </select>
 
       <button
         pButton

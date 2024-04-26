@@ -22,6 +22,7 @@ export class ProductService {
     formData.append('quantidade', product.quantidade.toString());
     formData.append('recipiente', product.recipiente.toString());
     formData.append('valor', product.valor.toString());
+    formData.append('fornecedor', product.fornecedor);
 
     let headers = new HttpHeaders().set('accept', '*/*');
 
@@ -30,7 +31,6 @@ export class ProductService {
     });
   }
 
-
   // Envia uma solicitação HTTP PUT para atualizar um produto existente e transforma o produto em um FORMDATA.
   putProduct(id: number, product: Product): Observable<Product> {
     const formData = new FormData();
@@ -38,6 +38,7 @@ export class ProductService {
     formData.append('quantidade', product.quantidade.toString());
     formData.append('recipiente', product.recipiente.toString());
     formData.append('valor', product.valor.toString());
+    formData.append('fornecedor', product.fornecedor.toString());
 
     return this.http.put<Product>(`${this.url}/product/?id=${id}`, formData);
   }

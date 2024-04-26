@@ -1,3 +1,4 @@
+import { ProviderService } from './../../provider/provider.service';
 import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from '../product/product.service';
@@ -12,6 +13,8 @@ import { Provider } from 'src/app/models/provider';
   providers: [MessageService],
 })
 export class CadProductComponent {
+  fornecedores: string[] = [""];
+
   selectedProvider: Provider | null = null;
   products: Product[] = [];
   providers: Provider[] = [];
@@ -32,7 +35,8 @@ export class CadProductComponent {
     private router: Router,
     private route: ActivatedRoute,
     private MessageService: MessageService,
-    private productService: ProductService
+    private productService: ProductService,
+    private providerService: ProviderService
   ) {}
 
   // Método chamado durante a inicialização do componente.
@@ -43,7 +47,7 @@ export class CadProductComponent {
     if (id) {
       this.getId(id); // Se 'id' existe, o componente está em modo de edição.
     }
-    // this.getProviders()
+    this.getProviders()
   }
 
   // Entra no modo de edição e obtém as informações do produto para edição.
@@ -61,6 +65,7 @@ export class CadProductComponent {
         this.product.recipiente = this.editingProduct.recipiente;
         this.product.quantidade = this.editingProduct.quantidade;
         this.product.valor = this.editingProduct.valor;
+        this.product.fornecedor = this.editingProduct.fornecedor
       },
       error: (err) => {
         console.log(err);
@@ -144,9 +149,16 @@ export class CadProductComponent {
     });
   }
 
-  // getProviders() {
-  //   this.providers.get("").subscribe((provider: any) => {
-  //     this.provider = provider.map((provider: any) => provider.nome);
-  //   })
-  // }
+  search(event: HTMLInputElement) {}
+
+  getProviders() {
+    this.providerService.getProviders().subscribe((provider: any) => {
+      const providersNames = provider.map((provider: any) => provider.nome);
+      this.fornecedores = [this.fornecedores[0], ...providersNames]
+    });
+  }
+
+  handleFornecedor(fornecedor: string) {
+    this.product.fornecedor = fornecedor;
+  }
 }
