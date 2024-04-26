@@ -21,7 +21,7 @@ O principal objetivo ao criar esse projeto, é que ele realmente pudesse ser usa
 - Mensagens de Alerta: Exibe mensagens de alerta para o usuário com base nas ações realizadas no sistema.
 
 ## CAPTURA DA TELA 🖼️
-![Captura de tela 2023-12-01 160253](https://github.com/talitassousa/app_mvp_firstSprint/assets/86735363/f6dfd45f-17a1-4040-a87c-e29303b780a2)
+![Captura de tela 2024-04-26 144817](https://github.com/talitassousa/app_mvp_secondSprint/assets/86735363/34b524cd-c8fa-4dd5-89bf-0da10c96310d)
 
 ## FLUXOGRAMA 📈 
 ![Captura de tela 2024-04-25 172316](https://github.com/talitassousa/app_mvp_secondSprint/assets/86735363/bcb39b67-9dd5-4558-a44f-ecbe305315fb)
